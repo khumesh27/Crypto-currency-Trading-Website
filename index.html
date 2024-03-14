@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Crypto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+    <style>
+      @keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./index.css" rel="stylesheet" />
+
+      <div class="home-container">
+        <div class="home-header">
+          <head
+            data-thq="thq-navbar"
+            class="navbarContainer home-navbar-interactive"
+          >
+            <span class="logo">CRYPTO</span>
+            <div data-thq="thq-navbar-nav" class="home-desktop-menu">
+              <nav class="home-links">
+                <a href="index.html" class="home-nav12 bodySmall">Home</a>
+                <a href="market.html" class="home-nav4 bodySmall">Market</a>
+                <a href="trade.html" class="home-nav2 bodySmall">Trade</a>
+               
+                
+                <a href="support.html" class="home-nav5 bodySmall">Support</a>
+              </nav>
+              <div class="home-buttons">
+                <a href="login.html" class="buttonFilled">Login</a>
+                <a href="register.html" class="buttonFilled">Register</a>
+                
+
+              </div>
+            </div>
+            <div data-thq="thq-burger-menu" class="home-burger-menu">
+             
+            </div>
+            <div data-thq="thq-mobile-menu" class="home-mobile-menu">
+              <div class="home-nav">
+                <div class="home-top">
+                  <span class="logo">CRYPTO</span>
+                  <div data-thq="thq-close-menu" class="home-close-menu">
+                    <svg viewBox="0 0 1024 1024" class="home-icon02">
+                      <path
+                        d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <nav class="home-links1">
+                  <span>Home</span>
+                  <span class="home-nav21 bodySmall">Trade</span>
+                  
+                  <span class="home-nav41 bodySmall">Market</span>
+                  <span class="home-nav51 bodySmall">Support</span>
+                </nav>
+                <div class="home-buttons1">
+                  <button class="buttonFlat">Login</button>
+                  <button class="buttonFilled">Register</button>
+                </div>
+              </div>
+              
+            </div>
+          </header>
+          <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols"; [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR to USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    }
+  ],{
+  "showSymbolLogo": true,
+  "colorTheme": "light",
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "locale": "en"
+} }
+  </script>
+</div>
+<!-- TradingView Widget END -->
+        </div>
+        <div class="home-hero">
+          <div class="heroContainer home-hero1">
+            <div class="home-container01">
+              <h1 class="home-hero-heading heading1">
+                Trade Cryptocurrencies with Ease
+              </h1>
+              <span class="home-hero-sub-heading bodyLarge">
+                <span>
+                  <span>
+                    <span>
+                      Trade, invest, and manage your digital assets with our
+                      secure and user-friendly platform
+                    </span>
+                    <span></span>
+                  </span>
+                  <span>
+                    <span></span>
+                    <span></span>
+                  </span>
+                </span>
+                <span>
+                  <span>
+                    <span></span>
+                    <span></span>
+                  </span>
+                  <span>
+                    <span></span>
+                    <span></span>
+                  </span>
+                </span>
+              </span>
+              <div class="home-btn-group">
+                <a href="trade.html" class="buttonFilled">Get Started</a>
+                <a href="market.html" class="buttonFilled">Learn more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="home-features">
+          <div class="featuresContainer">
+            <div class="home-features1">
+              <div class="home-container02">
+                <span class="overline">
+                  <span>features</span>
+                  <br />
+                </span>
+                <h2 class="home-features-heading heading2">
+                  Trade Cryptocurrencies with Ease
+                </h2>
+                <span class="home-features-sub-heading bodyLarge">
+                  <span>
+                    <span>
+                      <span>
+                        Discover the powerful features that make our platform
+                        the perfect choice for cryptocurrency trading
+                      </span>
+                      <span></span>
+                    </span>
+                    <span>
+                      <span></span>
+                      <span></span>
+                    </span>
+                  </span>
+                  <span>
+                    <span>
+                      <span></span>
+                      <span></span>
+                    </span>
+                    <span>
+                      <span></span>
+                      <span></span>
+                    </span>
+                  </span>
+                </span>
+              </div>
+              <div class="home-container03">
+                <div class="featuresCard feature-card-feature-card">
+                  
+                  <div class="feature-card-container">
+                    <h3 class="feature-card-text heading3">
+                      <span>Real-time Trading</span>
+                    </h3>
+                    <span class="bodySmall">
+                      <span>
+                        Instantly buy and sell cryptocurrencies at the current
+                        market price
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="featuresCard feature-card-feature-card">
+                  
+                  <div class="feature-card-container">
+                    <h3 class="feature-card-text heading3">
+                      <span>Secure Wallet</span>
+                    </h3>
+                    <span class="bodySmall">
+                      <span>
+                        Store your digital assets in a highly secure and
+                        encrypted wallet
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="featuresCard feature-card-feature-card">
+                  
+                  <div class="feature-card-container">
+                    <h3 class="feature-card-text heading3">
+                      <span>Advanced Charting Tools</span>
+                    </h3>
+                    <span class="bodySmall">
+                      <span>
+                        Analyze cryptocurrency trends with powerful charting
+                        tools and indicators
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="featuresCard feature-card-feature-card">
+                  
+                  <div class="feature-card-container">
+                    <h3 class="feature-card-text heading3">
+                      <span>Multiple Cryptocurrencies</span>
+                    </h3>
+                    <span class="bodySmall">
+                      <span>
+                        Trade a wide range of popular cryptocurrencies,
+                        including Bitcoin, Ethereum, and more
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+  {
+  "width": 1000,
+  "height": 490,
+  "defaultColumn": "overview",
+  "screener_type": "crypto_mkt",
+  "displayCurrency": "USD",
+  "colorTheme": "light",
+  "locale": "en"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+        <div class="home-pricing">
+          <div class="pricingContainer">
+            <div class="home-container04">
+              <span class="overline">
+                <span>Pricing</span>
+                <br />
+              </span>
+              <h2 class="heading2">Choose Your Plan</h2>
+              <span class="home-pricing-sub-heading bodyLarge">
+                <span>
+                  <span>Select the plan that suits your trading needs</span>
+                </span>
+              </span>
+            </div>
+            <div class="home-container05">
+              <div class="freePricingCard home-pricing-card">
+                <div class="home-container06">
+                  <span class="home-text36 heading3">Free</span>
+                  <span class="bodySmall">
+                    Access to basic trading features
+                  </span>
+                </div>
+                <div class="home-container07">
+                  <span class="home-text37">
+                    <span>$</span>
+                    <span></span>
+                  </span>
+                  <span class="home-free-plan-price">0</span>
+                </div>
+                <div class="home-container08">
+                  <div class="home-container09">
+                    <span class="home-text40">✔</span>
+                    <span class="bodySmall">Real-time market data</span>
+                  </div>
+                  <div class="home-container10">
+                    <span class="home-text41">✔</span>
+                    <span class="bodySmall">Ability to create watchlists</span>
+                  </div>
+                  <div class="home-container11">
+                    <span class="home-text42">✔</span>
+                    <span class="bodySmall">Basic order types</span>
+                  </div>
+                  <div class="home-container12">
+                    <span class="home-text43">✔</span>
+                    <span class="bodySmall">Limited customer support</span>
+                  </div>
+                </div>
+                <button class="home-button buttonOutline">
+                  Continue with Free
+                </button>
+              </div>
+              <div class="basicPricingCard home-pricing-card1">
+                <div class="home-container13">
+                  <span class="home-text44 heading3">BASIC</span>
+                  <span class="bodySmall">
+                    Enhanced trading features for intermediate traders
+                  </span>
+                </div>
+                <div class="home-container14">
+                  <span class="home-text45">
+                    <span>$</span>
+                    <span></span>
+                  </span>
+                  <span class="home-basic-plan-pricing">9.99</span>
+                  <span class="home-text48">/ month</span>
+                </div>
+                <div class="home-container15">
+                  <div class="home-container16">
+                    <span class="home-text49">✔</span>
+                    <span class="bodySmall">All features of FREE plan</span>
+                  </div>
+                  <div class="home-container17">
+                    <span class="home-text51">✔</span>
+                    <span class="bodySmall">All Free plan features</span>
+                  </div>
+                  <div class="home-container18">
+                    <span class="home-text52">✔</span>
+                    <span class="bodySmall">Advanced order types</span>
+                  </div>
+                  <div class="home-container19">
+                    <span class="home-text53">✔</span>
+                    <span class="bodySmall">
+                      Access to historical market data
+                    </span>
+                  </div>
+                  <div class="home-container20">
+                    <span class="home-text54">✔</span>
+                    <span class="bodySmall">Priority customer support</span>
+                  </div>
+                </div>
+                <button class="home-button1 buttonFilled">
+                  Try the Basic plan
+                </button>
+              </div>
+              <div class="proPricingCard home-pricing-card2">
+                <div class="home-container21">
+                  <span class="home-text55 heading3">
+                    <span>PRO</span>
+                    <br />
+                  </span>
+                  <span class="bodySmall">
+                    Advanced trading features for professional traders
+                  </span>
+                </div>
+                <div class="home-container22">
+                  <span class="home-text58">
+                    <span>$</span>
+                    <span></span>
+                  </span>
+                  <span class="home-pro-plan-pricing">19.99</span>
+                  <span class="home-text61">/ month</span>
+                </div>
+                <div class="home-container23">
+                  <div class="home-container24">
+                    <span class="home-text62">✔</span>
+                    <span class="bodySmall">
+                      &nbsp;All features of BASIC plan
+                    </span>
+                  </div>
+                  <div class="home-container25">
+                    <span class="home-text64">✔</span>
+                    <span class="bodySmall">All Basic plan features</span>
+                  </div>
+                  <div class="home-container26">
+                    <span class="home-text65">✔</span>
+                    <span class="bodySmall">Advanced charting tools</span>
+                  </div>
+                  <div class="home-container27">
+                    <span class="home-text66">✔</span>
+                    <span class="bodySmall">
+                      Customizable trading strategies
+                    </span>
+                  </div>
+                  <div class="home-container28">
+                    <span class="home-text67">✔</span>
+                    <span class="bodySmall">
+                      24/7 dedicated customer support
+                    </span>
+                  </div>
+                </div>
+                <button class="home-button2 buttonFilled">
+                  Try the PRO plan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="home-banner">
+          <div class="bannerContainer home-banner1">
+            <h1 class="home-banner-heading heading2">
+              Welcome to Our Cryptocurrency Trading Platform
+            </h1>
+            <span class="home-banner-sub-heading bodySmall">
+              <span>
+                <span>
+                  <span>
+                    At our platform, we provide a seamless and efficient way for
+                    you to trade cryptocurrencies. Whether you are a beginner or
+                    an experienced trader, our platform offers a wide range of
+                    features and tools to help you navigate the exciting world
+                    of digital currencies.
+                  </span>
+                  <span></span>
+                </span>
+                <span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </span>
+              <span>
+                <span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </span>
+            </span>
+            <a href="trade.html" class="buttonFilled">Start Your Journey</a>
+          </div>
+        </div>
+        <div class="home-faq">
+          <div class="faqContainer">
+            <div class="home-faq1">
+              <div class="home-container29">
+                <span class="overline">
+                  <span>FAQ</span>
+                  <br />
+                </span>
+                <h2 class="home-text85 heading2">Common questions</h2>
+                <span class="home-text86 bodyLarge">
+                  <span>
+                    Here are some of the most common questions that we get.
+                  </span>
+                  <br />
+                </span>
+              </div>
+              <div class="home-container30">
+                <div class="question1-container">
+                  <span class="question1-text heading3">
+                    <span>What is cryptocurrency trading?</span>
+                  </span>
+                  <span class="bodySmall">
+                    <span>
+                      Cryptocurrency trading is the process of buying and
+                      selling digital currencies on a cryptocurrency exchange
+                      platform.
+                    </span>
+                  </span>
+                </div>
+                <div class="question1-container">
+                  <span class="question1-text heading3">
+                    <span>How does cryptocurrency trading work?</span>
+                  </span>
+                  <span class="bodySmall">
+                    <span>
+                      Cryptocurrency trading involves speculating on the price
+                      movements of digital currencies. Traders can buy
+                      cryptocurrencies at a lower price and sell them at a
+                      higher price to make a profit.
+                    </span>
+                  </span>
+                </div>
+                <div class="question1-container">
+                  <span class="question1-text heading3">
+                    <span>Is cryptocurrency trading safe?</span>
+                  </span>
+                  <span class="bodySmall">
+                    <span>
+                      While cryptocurrency trading carries certain risks, such
+                      as price volatility and security concerns, reputable
+                      exchanges implement security measures to protect user
+                      funds. It is important to use trusted platforms and follow
+                      best practices for securing your digital assets.
+                    </span>
+                  </span>
+                </div>
+                <div class="question1-container">
+                  <span class="question1-text heading3">
+                    <span>
+                      What are the fees associated with cryptocurrency trading?
+                    </span>
+                  </span>
+                  <span class="bodySmall">
+                    <span>
+                      Cryptocurrency exchanges typically charge fees for
+                      executing trades. These fees can vary depending on the
+                      exchange and the type of trade. It is advisable to review
+                      the fee structure of an exchange before engaging in
+                      trading activities.
+                    </span>
+                  </span>
+                </div>
+                <div class="question1-container">
+                  <span class="question1-text heading3">
+                    <span>Can I make money with cryptocurrency trading?</span>
+                  </span>
+                  <span class="bodySmall">
+                    <span>
+                      Yes, it is possible to make money with cryptocurrency
+                      trading. However, it requires knowledge, experience, and
+                      careful analysis of market trends. It is important to note
+                      that trading involves risks, and there is no guarantee of
+                      profits.
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer">
+          <footer class="footerContainer home-footer1">
+            
+            <div class="home-separator"></div>
+            <div class="home-container32">
+              <span class="bodySmall home-text89">
+                
+                © 2023 myCompany, All Rights Reserved.  
+              </span>
+              
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

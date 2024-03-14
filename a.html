@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Trading</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    #container {
+      width: 80%;
+      max-width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    #balance {
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 1.2em;
+    }
+
+    #portfolio {
+      margin-top: 20px;
+      border-top: 2px solid #ddd;
+      padding-top: 10px;
+    }
+
+    #controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #controls button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    #controls button:hover {
+      background-color: #45a049;
+    }
+
+    #coin {
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    #quantity {
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    #log {
+      margin-top: 20px;
+    }
+
+    #portfolioTable {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    #portfolioTable th, #portfolioTable td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .log-entry {
+      padding: 5px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      margin-bottom: 5px;
+    }
+
+    .log-entry:nth-child(even) {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <h1>Crypto Trading Simulator</h1>
+  
+    <div id="balance">Balance: $<span id="balanceAmount">10000.00</span></div>
+
+    <div id="portfolio">
+      <h2>Portfolio</h2>
+      <table id="portfolioTable">
+        <thead>
+          <tr>
+            <th>Coin</th>
+            <th>Quantity</th>
+            <th>Current Value</th>
+            <th>Total Cost</th>
+            <th>Profit/Loss</th>
+          </tr>
+        </thead>
+        <tbody id="portfolioBody"></tbody>
+      </table>
+    </div>
+
+    <div id="controls">
+      <div class="button-group">
+        <button onclick="addMoney()">Add Money</button>
+        <button onclick="withdraw()">Withdraw</button>
+      </div>
+
+      <div class="button-group">
+        <label for="coin">Select Coin:</label>
+        <select id="coin" onchange="getCoinValue()">
+          <option value="bitcoin">Bitcoin</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="litecoin">Litecoin</option>
+          <option value="ripple">Ripple</option>
+        </select>
+        <div id="coinValue">Current Value: $0.00</div>
+      </div>
+
+      <div class="button-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="0" step="0.01">
+      </div>
+
+      <div class="button-group">
+        <button onclick="showValue()">Show Value</button>
+        <button onclick="buy()">Buy</button>
+        <button onclick="sell()">Sell</button>
+      </div>
+    </div>
+
+    <div id="log">
+      <h2>Transaction History</h2>
+      <div id="buyLog"></div>
+      <div id="sellLog"></div>
+    </div>
+  </div>
+
+  <script>
+    let balance = 10000;
+    let coins = {
+      bitcoin: 0,
+      ethereum: 0,
+      litecoin: 0,
+      ripple: 0
+    };
+
+    function updateBalance() {
+      document.getElementById('balanceAmount').innerText = balance.toFixed(2);
+    }
+
+    function updatePortfolio() {
+      const portfolioBody = document.getElementById('portfolioBody');
+      portfolioBody.innerHTML = '';
+
+      for (const coin in coins) {
+        if (coins[coin] > 0) {
+          const row = document.createElement('tr');
+          const cellCoin = document.createElement('td');
+          const cellQuantity = document.createElement('td');
+          const cellCurrentValue = document.createElement('td');
+          const cellTotalCost = document.createElement('td');
+          const cellProfitLoss = document.createElement('td');
+
+          cellCoin.textContent = coin;
+          cellQuantity.textContent = coins[coin].toFixed(2);
+          const currentValue = coins[coin] * getCoinValue(coin);
+          cellCurrentValue.textContent = currentValue.toFixed(2);
+          const totalCost = calculateCost(coins[coin]);
+          cellTotalCost.textContent = totalCost.toFixed(2);
+          const profitLoss = currentValue - totalCost;
+          cellProfitLoss.textContent = profitLoss.toFixed(2);
+
+          row.appendChild(cellCoin);
+          row.appendChild(cellQuantity);
+          row.appendChild(cellCurrentValue);
+          row.appendChild(cellTotalCost);
+          row.appendChild(cellProfitLoss);
+
+          portfolioBody.appendChild(row);
+        }
+      }
+    }
+
+    function updateLog(message, type) {
+      const log = document.getElementById(type === 'buy' ? 'buyLog' : 'sellLog');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.textContent = message;
+      log.appendChild(entry);
+    }
+
+    function addMoney() {
+      const amount = parseFloat(prompt('Enter the amount to add:'));
+      if (isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid amount.');
+        return;
+      }
+      balance += amount;
+      updateBalance();
+      updateLog(`Added $${amount.toFixed(2)} to the balance.`);
+    }
+
+    async function getCoinValue(coin) {
+      return fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`)
+        .then(response => response.json())
+        .then(data => data[coin].usd)
+        .catch(error => {
+          console.error('Error fetching coin value:', error);
+          return 0;
+        });
+    }
+
+    async function showValue() {
+      const coin = document.getElementById('coin').value;
+      const value = await getCoinValue(coin);
+      document.getElementById('coinValue').innerText = `Current Value: $${value.toFixed(2)}`;
+      alert(`Fetching current value of ${coin}... Check the "Current Value" section.`);
+    }
+
+    async function buy() {
+      const coin = document.getElementById('coin').value;
+      const quantity = parseFloat(document.getElementById('quantity').value);
+
+      if (isNaN(quantity) || quantity <= 0) {
+        alert('Please enter a valid quantity.');
+        return;
+      }
+
+      const coinValue = await getCoinValue(coin);
+      const cost = coinValue * quantity;
+
+      if (cost > balance) {
+        alert('Insufficient funds to buy.');
+        return;
+      }
+
+      balance -= cost;
+      coins[coin] += quantity;
+      updateBalance();
+      updatePortfolio();
+      updateLog(`Bought ${quantity} ${coin} coins for $${cost.toFixed(2)}.`, 'buy');
+    }
+
+    async function sell() {
+      const coin = document.getElementById('coin').value;
+      const quantity = parseFloat(document.getElementById('quantity').value);
+
+      if (isNaN(quantity) || quantity <= 0) {
+        alert('Please enter a valid quantity.');
+        return;
+      }
+
+      if (quantity > coins[coin]) {
+        alert('Not enough coins to sell.');
+        return;
+      }
+
+      const coinValue = await getCoinValue(coin);
+      const earnings = coinValue * quantity;
+
+      balance += earnings;
+      coins[coin] -= quantity;
+      updateBalance();
+      updatePortfolio();
+      updateLog(`Sold ${quantity} ${coin} coins for $${earnings.toFixed(2)}.`, 'sell');
+    }
+
+    function withdraw() {
+      const amount = parseFloat(prompt('Enter the amount to withdraw:'));
+      if (isNaN(amount) || amount <= 0 || amount > balance) {
+        alert('Invalid withdrawal amount.');
+        return;
+      }
+      balance -= amount;
+      updateBalance();
+      updateLog(`Withdrawn $${amount.toFixed(2)} from the balance.`);
+    }
+
+    function calculateCost(quantity) {
+      const coin = document.getElementById('coin').value;
+      const prices = {
+        bitcoin: 50000,
+        ethereum: 3000,
+        litecoin: 150,
+        ripple: 0.75
+      };
+      return quantity * prices[coin];
+    }
+
+    // Initial update
+    updateBalance();
+    updatePortfolio();
+  </script>
+</body>
+</html>
